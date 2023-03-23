@@ -10,11 +10,11 @@ async def quiz_2(call: types.CallbackQuery):
     button_1 = InlineKeyboardButton("NEXT", callback_data="button_2")
     markup.add(button_1)
 
-    question = "Сколько яблок на березе??"
+    question = "Сколько областей в Кыргызстане?"
     answer = [
         "12",
         "3",
-        "БЕССКОНЕЧНОСТЬ",
+        "7",
         "0",
         "-10",
         "999",
@@ -26,7 +26,7 @@ async def quiz_2(call: types.CallbackQuery):
         is_anonymous=False,
         type='quiz',
         correct_option_id=2,
-        explanation="Стыдно не знать",
+        explanation="Стыдно не знать брат!",
         open_period=5,
         reply_markup=markup
     )
@@ -49,7 +49,7 @@ async def quiz_3(call: types.CallbackQuery):
         is_anonymous=False,
         type='quiz',
         correct_option_id=3,
-        explanation="Стыдно не знать",
+        explanation="Стыдно не знать брат!",
         # open_period=5,
     )
 
