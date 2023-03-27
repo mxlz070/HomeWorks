@@ -1,10 +1,13 @@
 from aiogram.utils import executor
 from config import dp
-from handlers import client, callback, extra, admin, FSM_Admin_mentors
+from handlers import client, callback, extra, admin, FSM_Admin_mentors, sheduler
 import logging
 from database.bot_db import sql_create
-async def on_startup(_)
+
+
+async def on_startup(_):
     sql_create()
+    await sheduler.set_scheduler()
 
 
 client.register_handlers_client(dp)
