@@ -1,6 +1,7 @@
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot
+from parser.parser_wheel import parser
 from keybort.client_kb import start_markup
 from database.bot_db import sql_command_random, sql_command_all
 from keybort.client_kb import direction_markup
@@ -53,6 +54,20 @@ async def quiz_1(message: types.Message):
         reply_markup=markup
     )
 
+
+async def parsser_wheels(message: types.Message):
+    items = parser()
+    for item in items:
+        await bot.send_message(
+            message.from_user.id,
+
+            f"{item['link']}"
+            f"{item['logo']}\n"
+            f"# {item['size']}\n"
+            f"цена - {item['price']}\n"
+        )
+
+
 async def get_random_user(message: types.Message):
     # await message.answer("Какое направление?", reply_markup=direction_markup)
     await sql_command_random(message)
@@ -60,6 +75,8 @@ async def get_random_user(message: types.Message):
 
 async def get_all_mentor(message: types.Message):
     await sql_command_all()
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_command, commands=['start'])
     dp.register_message_handler(help_command, commands=['help'])
@@ -67,3 +84,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(pin_chat_command, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(get_random_user, commands=["getmentor"])
     dp.register_message_handler(get_all_mentor, commands=["allmentor"])
+    dp.register_message_handler(parsser_wheels, commands=["wheel"])
